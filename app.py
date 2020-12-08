@@ -1,6 +1,6 @@
 from flask import Flask,jsonify,g
 from flask_cors import CORS
-from resource.song import song
+from resources.songs import song
 import models
 
 DEBUG = True
