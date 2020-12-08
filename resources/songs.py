@@ -38,3 +38,10 @@ def get_one_song(id):
     song = models.Song.get_by_id(id)
     print(song.__dict__)
     return jsonify(data=model_to_dict(song), status={"code": 200, "message": "Success"})
+#UPDATE ROUTE
+@song.route('/<id>', methods=["PUT"])
+def update_song(id):
+    payload = request.get_json()
+    query = models.Song.update(**payload).where(models.Song.id==id)
+    query.execute()
+    return jsonify(data=model_to_dict(models.Song.get_by_id(id)), status={"code": 200, "message": "resource updated successfully"})
