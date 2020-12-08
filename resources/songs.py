@@ -45,3 +45,10 @@ def update_song(id):
     query = models.Song.update(**payload).where(models.Song.id==id)
     query.execute()
     return jsonify(data=model_to_dict(models.Song.get_by_id(id)), status={"code": 200, "message": "resource updated successfully"})
+
+#DELETE ROUTE
+@song.route('/<id>', methods=["Delete"])
+def delete_song(id):
+    query = models.Song.delete().where(models.Song.id==id)
+    query.execute()
+    return jsonify(data='resource successfully deleted', status={"code": 200, "message": "resource deleted successfully"})
